@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-muted: #f4f4f5;
+  --border: #e4e4e7;
+  --text-primary: #09090b;
+  --text-secondary: #71717a;
+  --text-muted: #a1a1aa;
+  --accent: #18181b;
+  --accent-fg: #ffffff;
+  --blue: #2563eb;
+
+  /* Status Badges */
+  --badge-lead-bg: #eff6ff;
+  --badge-lead-fg: #1d4ed8;
+  --badge-customer-bg: #f0fdf4;
+  --badge-customer-fg: #166534;
+  --badge-churned-bg: #fef2f2;
+  --badge-churned-fg: #991b1b;
+}
+
+.dark {
+  --bg-base: #09090b;
+  --bg-surface: #111113;
+  --bg-muted: #18181b;
+  --border: #27272a;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --accent: #ffffff;
+  --accent-fg: #09090b;
+  --blue: #3b82f6;
+
+  /* Status Badges */
+  --badge-lead-bg: #1e3a5f;
+  --badge-lead-fg: #60a5fa;
+  --badge-customer-bg: #14532d;
+  --badge-customer-fg: #4ade80;
+  --badge-churned-bg: #450a0a;
+  --badge-churned-fg: #f87171;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+}
+
+@layer components {
+  /* Cards */
+  .crm-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: none;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: opacity 150ms ease;
+  }
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 150ms ease;
+  }
+  .btn-secondary:hover {
+    background-color: var(--bg-muted);
+  }
+  .btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Inputs */
+  .crm-input {
+    background-color: var(--bg-muted);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: ring 150ms ease;
+  }
+  .crm-input:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px var(--blue);
+  }
+
+  /* Labels */
+  .crm-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  /* Badges */
+  .badge {
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .badge-lead {
+    background-color: var(--badge-lead-bg);
+    color: var(--badge-lead-fg);
+  }
+  
+  .badge-customer {
+    background-color: var(--badge-customer-bg);
+    color: var(--badge-customer-fg);
+  }
+  
+  .badge-churned {
+    background-color: var(--badge-churned-bg);
+    color: var(--badge-churned-fg);
+  }
+
+  /* Activity Badges */
+  .badge-call {
+    background-color: var(--badge-lead-bg);
+    color: var(--badge-lead-fg);
+  }
+  .badge-email {
+    background-color: #fef3c7;
+    color: #d97706;
+  }
+  .dark .badge-email {
+    background-color: #78350f;
+    color: #fbbf24;
+  }
+  .badge-meeting {
+    background-color: var(--badge-customer-bg);
+    color: var(--badge-customer-fg);
+  }
+  .badge-activity-note {
+    background-color: var(--bg-muted);
+    color: var(--text-secondary);
+  }
+}
+
+@keyframes modal-backdrop-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-card-scale {
+  from { transform: scale(0.97); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-backdrop-animate {
+  animation: modal-backdrop-fade 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-card-animate {
+  animation: modal-card-scale 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.slide-in-right-animate {
+  animation: slide-in-right 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
